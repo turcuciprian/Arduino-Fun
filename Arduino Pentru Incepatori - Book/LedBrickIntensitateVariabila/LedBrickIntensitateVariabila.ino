@@ -7,11 +7,11 @@ void setup() {
 void loop() {
   for(int i = 0; i<255;i++){
     analogWrite(pinUsed,i);
-    delay(2);
+    delay(2);// small delay means fast pulse rate
   }
   for(int i = 255;i>0;i--){
     analogWrite(pinUsed,i);
-    delay(2);
+    delay(2);// small delay means fast pulse rate
   }
 
 }
