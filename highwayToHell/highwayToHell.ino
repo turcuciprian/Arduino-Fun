@@ -1,8 +1,6 @@
 //Arduino Board Used: Arduino Nano
 //using D3 (pin 3) for the i/o of the buzzer
-/*************************************************
- * Public Constants
- *************************************************/
+
 
 #define NOTE_B0  31
 #define NOTE_C1  33
@@ -93,55 +91,166 @@
 #define NOTE_CS8 4435
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
+
+
+
 const int pinNr = 3;
-/*
-  Melody
-
-  Plays a melody
-
-  circuit:
-  - 8 ohm speaker on digital pin 8
-
-  created 21 Jan 2010
-  modified 30 Aug 2011
-  by Tom Igoe
-
-  This example code is in the public domain.
-
-  http://www.arduino.cc/en/Tutorial/Tone
-*/
-
-//#include "pitches.h"
-
-// notes in the melody:
-int melody[] = {
-  NOTE_E2, NOTE_E2, NOTE_E1, NOTE_E1, NOTE_E1, 0, NOTE_E1, NOTE_E1
-};
-
-// note durations: 4 = quarter note, 8 = eighth note, etc.:
-int noteDurations[] = {
-  4, 8, 8, 4, 4, 4, 4, 4
-};
-
 void setup() {
-  // iterate over the notes of the melody:
-  for (int thisNote = 0; thisNote < 8; thisNote++) {
-
-    // to calculate the note duration, take one second divided by the note type.
-    //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-    int noteDuration = 1000 / noteDurations[thisNote];
-    tone(pinNr, melody[thisNote], noteDuration);
-
-    // to distinguish the notes, set a minimum time between them.
-    // the note's duration + 30% seems to work well:
-    int pauseBetweenNotes = noteDuration * 1.30;
-    delay(pauseBetweenNotes);
-    // stop the tone playing:
-//    noTone(pinNr);
-    analogWrite(pinNr,LOW);
-  }
+  pinMode(pinNr,OUTPUT);
+  highwayToHell();    
 }
 
-void loop() {
-  // no need to repeat the melody.
+void loop() { 
+  
 }
+
+void highwayToHell(){
+  
+    hthGuitar();
+//    hthGuitarPDrums();
+}
+//
+// VOICE 
+//
+void hthVoice(){
+  //voice
+    getNote(NOTE_G7,300); //Li 
+    getNote(NOTE_G7,300); //Ving
+    getNote(NOTE_E7,300); //ea
+    getNote(NOTE_E7,500); //sy
+    delay(500);
+    getNote(NOTE_G7,300); //Li
+    getNote(NOTE_G7,300); //ving
+    getNote(NOTE_E7,700); //free
+    delay(500);
+    getNote(NOTE_E7,300); //Sea
+    delay(10);
+    getNote(NOTE_G7,300); //son
+    delay(10);
+    getNote(NOTE_G7,300); //Ti
+    delay(10);
+    getNote(NOTE_E7,300); //che
+    delay(10);
+    getNote(NOTE_E7,300); //ts
+    delay(10);
+    getNote(NOTE_G7,300); //son
+    getNote(NOTE_E7,100); //ts
+    getNote(NOTE_E7,300); //ts
+    getNote(NOTE_E7,700); //ts
+    
+}
+
+//
+//INTRO GUITAR
+//
+void hthGuitar(){
+  getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+  
+    delay(1500);
+    //ta da DA  
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_C4,300);
+
+    delay(1500);
+    //ta da DA
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_C4,300);
+
+    delay(300);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_C4,300);
+
+    delay(300);
+    getNote(NOTE_B4,300);
+    delay(300);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    
+    delay(1500);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+}
+//
+// GUITAR PLUS DRUMS
+//
+void hthGuitarPDrums(){
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+
+     //
+    // Drums
+    //
+    getNote(NOTE_C3,200);
+    delay(10);
+    getNote(NOTE_C3,300);
+    delay(10);
+    getNote(NOTE_B2,50);
+    delay(10);
+    getNote(NOTE_C3,150);
+    
+
+  
+    delay(1500);
+    //ta da DA  
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_C4,300);
+
+    delay(1500);
+    //ta da DA
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_C4,300);
+
+    delay(300);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_C4,300);
+
+    delay(300);
+    getNote(NOTE_B4,300);
+    delay(300);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    
+    delay(1500);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+    delay(10);
+    getNote(NOTE_A3,300);
+}
+void getNote(int xNote, int xDelay){
+    tone(pinNr,xNote);
+    delay(xDelay);// short enough delay to hear the fluctuation
+    noTone(pinNr);
+  digitalWrite(pinNr,HIGH);
+}
+
