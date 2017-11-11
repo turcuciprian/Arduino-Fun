@@ -1,9 +1,9 @@
 
 
 /* SparkFun TSL2561
- *  
+
  *  */
- #include <SparkFunTSL2561.h>
+#include <SparkFunTSL2561.h>
 #include <Wire.h>
 
 // Create an SFE_TSL2561 object, here called "light":
@@ -18,9 +18,9 @@ void setup() {
   unsigned char ID;
   if (light.getID(ID))
   {
-    
-//    Serial.print(ID,HEX);
-    
+
+    //    Serial.print(ID,HEX);
+
   }
   else
   {
@@ -29,7 +29,7 @@ void setup() {
   }
   gain = 0;
   unsigned char time = 2;
-  light.setTiming(gain,time,ms);
+  light.setTiming(gain, time, ms);
   light.setPowerUp();
 
 }
@@ -37,10 +37,10 @@ void setup() {
 void loop() {
   delay(ms);
   unsigned int data0, data1;
-   if (light.getData(data0,data1))
+  if (light.getData(data0, data1))
   {
     // getData() returned true, communication was successful
-    
+
     Serial.print("D0: ");
     Serial.print(data0);
     Serial.print(" - D1: ");
@@ -48,7 +48,7 @@ void loop() {
   }
   double lux;    // Resulting lux value
   boolean good;  // True if neither sensor is saturated
-  good = light.getLux(gain,ms,data0,data1,lux);
+  good = light.getLux(gain, ms, data0, data1, lux);
   Serial.print(" - LUX: ");
   Serial.print(lux);
   Serial.println("");
@@ -57,14 +57,14 @@ void loop() {
 }
 
 void printError(byte error)
-  // If there's an I2C error, this function will
-  // print out an explanation.
+// If there's an I2C error, this function will
+// print out an explanation.
 {
   Serial.print("I2C error: ");
-  Serial.print(error,DEC);
+  Serial.print(error, DEC);
   Serial.print(", ");
-  
-  switch(error)
+
+  switch (error)
   {
     case 0:
       Serial.println("success");
