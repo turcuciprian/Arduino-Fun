@@ -7,7 +7,7 @@ const int trigPin = 3;//OUTPUT
 const int echoPin = 2;//INPUT
 long distance;
 int duration;
-NewPing sonar(trigPin,echoPin,2000);
+NewPing sonar(trigPin,echoPin,200);
 void setup() {
   pinMode(trigPin, OUTPUT);
   pinMode(trigPin, INPUT);
